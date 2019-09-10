@@ -1,4 +1,6 @@
-function BetterFilterWidget(field_name){
+function BetterFilterWidget(field_name, verbose_name){
+
+    verbose_name = verbose_name || field_name;
 
     function updateSelectedDisplay(){
         // BFWTimer.start(arguments.callee.name);
@@ -41,7 +43,7 @@ function BetterFilterWidget(field_name){
     var orig_input = $('#id_'+field_name);
     var available_items = $('<div id="available_'+field_name+'" class="item-list available-items"/>');
     var selected_items = $('<div id="selected_'+field_name+'" class="item-list selected-items"></div>');
-    var filter_input = $('<input class="item-filter" type="text" placeholder="type to filter..."/>');
+    var filter_input = $('<input class="item-filter" type="text" placeholder="Введите для поиска..."/>');
     var item_count = 0;
     // Layout
     // Hide built-in widget stuff
@@ -51,7 +53,7 @@ function BetterFilterWidget(field_name){
     bfw_wrap = $('<div/>');
     orig_input.parent().append(bfw_wrap);
     bfw_wrap.addClass('bfw');
-    bfw_wrap.append( '<div class="title title-available">Available '+field_name+'</div><div class="title title-selected">Selected '+field_name+'</div><div style="clear:both"/>');
+    bfw_wrap.append( '<div class="title title-available">Доступные '+verbose_name+'</div><div class="title title-selected">Выбранные '+ verbose_name+'</div><div style="clear:both"/>');
     bfw_wrap.append( filter_input );
     bfw_wrap.append( available_items );
     bfw_wrap.append( selected_items );
